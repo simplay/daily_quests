@@ -1,0 +1,11 @@
+tags
+.DS_Store
+
+.db
+*.sqlite3
+
+coverage
+doc
+
+.yardoc/
+*.pdf

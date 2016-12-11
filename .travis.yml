@@ -1,0 +1,7 @@
+language: ruby
+before_install: gem install bundler
+install: bundle install
+rvm:
+  - 2.3.0
+cache: bundler
+script: rake setup; rake test; bundle exec codeclimate-test-reporter

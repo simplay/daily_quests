@@ -7,6 +7,8 @@ task :test do
   require "simplecov"
   SimpleCov.start do
     add_filter "test/"
+    add_filter "dq.rb"
+    add_filter "service.rb"
   end
   test_path = './test/*'
   test_files =['_test.rb', '_spec.rb']
@@ -16,7 +18,8 @@ end
 desc "Starts an interactive console loading the complete environment and codebase" 
 task :console do
   require_relative 'dq'
-  require 'pry'; binding.pry
+  require 'pry'
+  Pry.start
 end
 
 desc "Generate Yard documentation of project source located at src/"
@@ -26,6 +29,11 @@ task :docs do
   require "rails_erd/diagram/graphviz"
   RailsERD::Diagram::Graphviz.create
   puts "Generated UML diagram 'erd.pdf'."
+end
+
+desc "Annotate models"
+task :annotate do
+  system("annotate --model-dir src")
 end
 
 # @example: usage examples:

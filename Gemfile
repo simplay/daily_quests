@@ -19,16 +19,8 @@ gem 'grape-swagger'
 # A documentation generation tool
 gem 'yard'
 
-# for keeping track of test coverage
-gem 'simplecov', require: false
-
 # for evaluating quality of documentation
 gem 'inch', require: false
-
-
-# for generating coverage report
-#gem 'coveralls', require: false
-
 
 group :development, :test do
   # An IRB alternative and runtime developer console
@@ -45,6 +37,12 @@ group :development, :test do
 
   # Generate Entity-Relationship Diagrams
   gem "rails-erd"
+end
+
+group :development do
+
+  # annotate Models with schema and routes info 
+  gem 'annotate'
 end
 
 group :test do

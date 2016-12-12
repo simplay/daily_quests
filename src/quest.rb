@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: quests
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  description :string
+#  due         :datetime
+#  finished    :boolean
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 # A Quest models a task which should be finished until a certain #due date.
 # It may contain an optional description.
 class Quest < ActiveRecord::Base
@@ -14,8 +27,8 @@ class Quest < ActiveRecord::Base
       :id => id,
       :title => title,
       :description => description,
-      :start => created_at,
-      :due => due,
+      :start => created_at.to_s,
+      :due => due.to_s,
       :finished => finished
     }
   end

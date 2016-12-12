@@ -10,4 +10,9 @@ class QuestTest < MiniTest::Test
     q = Quest.new(title: "foo", due: Time.now, finished: true)
     assert q.finished
   end
+
+  def test_start_same_as_created_at
+    q = Quest.create(title: "foo", due: Time.now)
+    assert_equal(q.created_at, q.start)
+  end
 end

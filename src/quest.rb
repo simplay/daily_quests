@@ -27,10 +27,17 @@ class Quest < ActiveRecord::Base
       :id => id,
       :title => title,
       :description => description,
-      :start => created_at.to_s,
+      :start => start.to_s,
       :due => due.to_s,
       :finished => finished
     }
+  end
+
+  # Get this quest's creation date and time.
+  # 
+  # @return [Time] created at date time.
+  def start
+    created_at
   end
 
   private

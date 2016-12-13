@@ -20,6 +20,7 @@ require 'grape-swagger'
 
 # Load source code
 require 'quest'
+require 'time_builder'
 
 # Load API interfaces
 require 'quests_v1'

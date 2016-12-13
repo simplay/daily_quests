@@ -46,8 +46,7 @@ class API::QuestsV1 < Grape::API
       error! if params[:due].nil?
 
       # parse date and time input, which is '-' separated.
-      date_arguments = params[:due].split('-')
-      params[:due] = Time.new(*date_arguments)
+      params[:due] = TimeBuilder.new(params[:due]).content
 
       quest = Quest.new(declared_params)
       if quest.valid?
@@ -86,9 +85,9 @@ class API::QuestsV1 < Grape::API
       begin
         # parse date and time input, which is '-' separated.
         unless params[:due].nil?
-          date_arguments = params[:due].split('-')
-          error!("400 Unknown date format #{params[:due]}. Please use YYYY-MM-DD-hh-mm", 400) if date_arguments.count == 1
-          params[:due] = Time.new(*date_arguments)
+          new_date = TimeBuilder.new(params[:due])
+          error!("400 Unknown date format #{params[:due]}. Please use YYYY-MM-DD-hh-mm", 400) unless new_date.valid?
+          params[:due] = new_date.content
         end
 
         if quest.update_attributes(declared_params)
